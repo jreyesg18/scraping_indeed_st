@@ -14,21 +14,21 @@ Este proyecto es una aplicación en Streamlit que permite realizar scraping de o
 1. **Clonar el repositorio:**
 
 
-      git clone https://github.com/usuario/indeed_scraping.git
-    
-      cd indeed_scraping
+         git clone https://github.com/usuario/indeed_scraping.git
+         cd indeed_scraping
 
 2. **Crear un entorno virtual (opcional, pero recomendado):**
 
 
-      python -m venv venv
-      source venv/bin/activate  # macOS/Linux
-      .\venv\Scripts\activate  # Windows
+         python -m venv venv
+      
+         source venv/bin/activate  # macOS/Linux
+      
+         .\venv\Scripts\activate  # Windows
 
 3. **Instalar las dependencias:**
 
-    
-      pip install streamlit selenium
+         pip install streamlit selenium
 
 4. **Descargar el WebDriver:**
 
