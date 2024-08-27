@@ -1,24 +1,13 @@
 import streamlit as st
-import os
-
-# Instalación de geckodriver para Firefox
-@st.experimental_singleton
-def install_geckodriver():
-    os.system('sbase install geckodriver')
-    os.system('ln -s /home/appuser/venv/lib/python3.7/site-packages/seleniumbase/drivers/geckodriver /home/appuser/venv/bin/geckodriver')
-
-_ = install_geckodriver()
-
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver import FirefoxOptions
 import time
 
 # Título de la app en Streamlit
 st.title('Scraping de Ofertas de Trabajo en Indeed')
 
-# Solicitar al usuario que seleccione el navegador (solo Firefox está disponible en esta versión)
-navegador = st.selectbox("Seleccione el navegador que desea utilizar:", ["Firefox"])
+# Solicitar al usuario que seleccione el navegador
+navegador = st.selectbox("Seleccione el navegador que desea utilizar:", ["Chrome", "Firefox"])
 
 # Campos de entrada en Streamlit para la URL y las palabras clave
 Pagina_Url = st.text_input("Ingrese URL de la página de empleos:", "https://cl.indeed.com/")
@@ -29,10 +18,13 @@ Palabra_clave = [keyword.strip() for keyword in Palabra_clave.split(',')]
 
 # Botón para iniciar el scraping
 if st.button('Iniciar Scraping'):
-    # Configuración del navegador Firefox en modo headless
-    opts = FirefoxOptions()
-    opts.add_argument("--headless")
-    driver = webdriver.Firefox(options=opts)
+    driver = None
+
+    # Condicional para seleccionar el driver basado en el navegador
+    if navegador == "Chrome":
+        driver = webdriver.Chrome()
+    elif navegador == "Firefox":
+        driver = webdriver.Firefox()
 
     driver.get(Pagina_Url)
 
